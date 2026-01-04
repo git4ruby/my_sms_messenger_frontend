@@ -8,8 +8,9 @@ export async function login(email, password) {
   const authHeader = response.headers["authorization"];
 
   if (authHeader) {
-    const token = authHeader.replace("Bearer", "");
+    const token = authHeader.replace("Bearer ", "").trim();
     localStorage.setItem("jwt", token);
+    console.log("Saved JWT:", token);
   }
 
   return response;
