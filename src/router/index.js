@@ -4,10 +4,10 @@ import Messages from "@/views/Messages.vue";
 import SendMessage from "@/views/SendMessage.vue";
 
 const routes = [
-  { path: "/", redirect: "/login" },
-  { path: "/login", component: Login },
-  { path: "/messages", component: Messages },
-  { path: "/send", component: SendMessage },
+  { path: "/", redirect: "/login", meta: { guestOnly: true } },
+  { path: "/login", component: Login, meta: { guestOnly: true } },
+  { path: "/messages", component: Messages, meta: { requiresAuth: true } },
+  { path: "/send", component: SendMessage, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({
