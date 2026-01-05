@@ -6,14 +6,15 @@ export async function login(email, password) {
   });
 
   const authHeader = response.headers["authorization"];
+  let token = null;
 
   if (authHeader) {
-    const token = authHeader.replace("Bearer ", "").trim();
-    localStorage.setItem("jwt", token);
-    console.log("Saved JWT:", token);
+    token = authHeader.replace("Bearer ", "").trim();
   }
-
-  return response;
+  return {
+    token,
+    user: response.data?.user || null,
+  };
 }
 
 export async function signup(email, password) {
