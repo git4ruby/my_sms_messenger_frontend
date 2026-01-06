@@ -6,13 +6,10 @@ export async function login(email, password) {
   });
 
   const authHeader = response.headers["authorization"];
-  console.log("Response headers:", response.headers);
-  console.log("Authorization header:", authHeader);
   let token = null;
 
   if (authHeader) {
     token = authHeader.replace("Bearer ", "").trim();
-    console.log("Token:", token);
   }
   return {
     token,
